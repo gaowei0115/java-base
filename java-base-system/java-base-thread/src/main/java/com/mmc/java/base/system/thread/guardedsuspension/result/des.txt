@@ -1,0 +1,2 @@
+guarded suspension 保护暂停模式
+	返回结果示例
