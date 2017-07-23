@@ -1,0 +1,2 @@
+优先级队列线程池实现：
+	通过new ThreadPoolExecutor(100, 200, 0L, TimeUnit.SECOND, new PriorityBlockingQueue<Runnable>());						

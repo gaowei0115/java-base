@@ -3,7 +3,6 @@ package com.mmc.java.base.system.thread.masterworker.future;
 
 import java.util.Queue;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /** 
  * className: WorkerFuture<br/>

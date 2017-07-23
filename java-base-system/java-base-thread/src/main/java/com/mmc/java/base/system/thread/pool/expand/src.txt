@@ -1,0 +1,51 @@
+扩展ThreadPoolExecutor：
+	在执行线程操作前后，提供beforeExecutor(),afterExecutor(),terminated()三个方法
+	实现扩展
+	
+	在ThreadPoolExecutor源码中实现：
+	通过内部Worker内部类实现,runWoker方法执行
+	final void runWorker(Worker w) {
+        Thread wt = Thread.currentThread();
+        Runnable task = w.firstTask;
+        w.firstTask = null;
+        w.unlock(); // allow interrupts
+        boolean completedAbruptly = true;
+        try {
+            while (task != null || (task = getTask()) != null) {
+                w.lock();
+                // If pool is stopping, ensure thread is interrupted;
+                // if not, ensure thread is not interrupted.  This
+                // requires a recheck in second case to deal with
+                // shutdownNow race while clearing interrupt
+                if ((runStateAtLeast(ctl.get(), STOP) ||
+                     (Thread.interrupted() &&
+                      runStateAtLeast(ctl.get(), STOP))) &&
+                    !wt.isInterrupted())
+                    wt.interrupt();
+                try {
+                    // 在执行线程核心任务之前
+                    beforeExecute(wt, task);
+                    Throwable thrown = null;
+                    try {
+                        task.run();
+                    } catch (RuntimeException x) {
+                        thrown = x; throw x;
+                    } catch (Error x) {
+                        thrown = x; throw x;
+                    } catch (Throwable x) {
+                        thrown = x; throw new Error(x);
+                    } finally {
+                    	// 在执行线程核心任务之后
+                        afterExecute(task, thrown);
+                    }
+                } finally {
+                    task = null;
+                    w.completedTasks++;
+                    w.unlock();
+                }
+            }
+            completedAbruptly = false;
+        } finally {
+            processWorkerExit(w, completedAbruptly);
+        }
+    }
