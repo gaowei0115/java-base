@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /** 
  * className: ReentrantLockMain<br/>
- * Description: <br/>
+ * Description: 重入锁<br/>
  * Author: GW<br/>
  * CreateTime： 2017年7月26日<br/>
  *
@@ -50,7 +50,7 @@ public class ReentrantLockMain {
 			e.printStackTrace();
 		}
 		thread2.interrupt(); // 中断线程
-		System.out.println(Thread.interrupted());
+//		System.out.println(Thread.interrupted());
 		System.out.println(thread2.isInterrupted());
 	}
 }
