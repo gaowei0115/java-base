@@ -1,5 +1,5 @@
 // Copyright (C) 2017-2017 GGWW All rights reserved
-package com.mmc.base.system.jvm.outof;
+package com.mmc.base.system.jvm.heapoutof;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class HeapOutOfMemoryTest {
 
 	
 	/**
-	 * -verbose:gc -Xms20M -Xmx20M -XX:+printGCDetails -XX:+HeapDumpOnOutOfMemoryError
+	 * -verbose:gc -Xms20M -Xmx20M -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError
 	 */
 	
 	
