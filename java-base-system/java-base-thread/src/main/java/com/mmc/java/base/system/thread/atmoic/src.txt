@@ -1,0 +1,4 @@
+非阻塞算法（nonbolcking algorithms）
+使用CAS（Compare And Swap）实现
+CAS：三个参数：V内存值、A预期值、B需要更新保存新值
+	只有当V内存值与A预期值一致时，才能将B值更新到内存。
