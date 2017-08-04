@@ -16,11 +16,11 @@ public class MockThreadPlay implements Runnable{
 	 */
 	public void run() {
 		System.out.println(Thread.currentThread().getId() + " : running start");
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		System.out.println(Thread.currentThread().getId() + " : running end");
 	}
 	
