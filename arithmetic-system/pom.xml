@@ -26,5 +26,6 @@
   	<module>arithmetic-sort</module>
     <module>arithmetic-collection</module>
     <module>arithmetic-arithbase</module>
+    <module>arithmetic-hash</module>
   </modules>
 </project>
