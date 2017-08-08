@@ -26,5 +26,6 @@
   	<module>java-base-io</module>
     <module>java-base-thread</module>
     <module>java-base-jvm</module>
+    <module>java-base-pattern-dynamic</module>
   </modules>
 </project>
