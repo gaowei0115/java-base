@@ -9,7 +9,7 @@ package com.mmc.java.base.system.thread.volatil;
  *
  * History: (Version) Author dateTime description <br/>
  */
-public class VolatileThread extends Thread {
+public class VolatileThread implements Runnable {
 
 	// 通过volatile修饰变量确保在多个线程中可见
 	private volatile boolean stop = false;
@@ -26,12 +26,11 @@ public class VolatileThread extends Thread {
 	/* (non-Javadoc)
 	 * @see java.lang.Thread#run()
 	 */
-	@Override
 	public void run() {
 		int i = 0;
 		while (!stop) {
 			System.out.println(Thread.currentThread().getName() + " ::: " + (i++));
 		}
-		System.out.println("Stop Thread");
+		System.out.println(Thread.currentThread().getName() + " >> Stop Thread");
 	}
 }

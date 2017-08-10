@@ -1,6 +1,9 @@
 // Copyright (C) 2016-2017 GWGW All rights reserved
 package com.mmc.java.base.system.thread.volatil;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /** 
  * ClassName: NoVolatileThread<br/>
  * Description: 非Volatile 修饰变量<br/>
@@ -27,16 +30,18 @@ public class NoVolatileThread extends Thread {
 		while (!stop) {
 			System.out.println(Thread.currentThread().getName() + " :: " + i++);
 		}
-		System.out.println("Thread stop");
+		System.out.println(Thread.currentThread().getName() + " >>> Thread stop");
 	}
 	
 	public static void main(String[] args) throws Exception {
 		NoVolatileThread noVolatileThread = new NoVolatileThread();
-		noVolatileThread.start();
-		Thread.sleep(100);
+		int tThreads = 100;
+		ExecutorService executor = Executors.newFixedThreadPool(100);
+		for (int i = 0; i < tThreads; i++) {
+			executor.execute(noVolatileThread);
+		}
 		noVolatileThread.subStop();
-		System.out.println("=====================================");
-		Thread.sleep(100);
-		System.out.println("______________________________________");
+		
+		executor.shutdown();
 	}
 }
