@@ -16,6 +16,11 @@ public class OrderDeadLock {
 	
 	public void leftRight() {
 		synchronized(left) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			synchronized(right) {
 				System.out.println("leftright....");
 			}
