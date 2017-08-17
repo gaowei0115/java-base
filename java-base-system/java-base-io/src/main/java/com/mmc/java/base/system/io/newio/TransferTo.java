@@ -15,12 +15,19 @@ import java.nio.channels.FileChannel;
  */
 public class TransferTo {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
         String path = new ChannelCopy().getClass().getResource("").getPath() + "1.txt";
         String pathcopy = new ChannelCopy().getClass().getResource("").getPath() + "1copy.txt";
-        FileChannel in = new FileInputStream(path).getChannel();
-        FileChannel out = new FileOutputStream(pathcopy).getChannel();
+        FileInputStream fis = new FileInputStream(path);
+        FileChannel in = fis.getChannel();
+        FileOutputStream fos = new FileOutputStream(pathcopy);
+        FileChannel out = fos.getChannel();
         int position = 0;
         in.transferTo(position, in.size(), out);
+        
+        out.close();
+        in.close();
+        fos.close();
+        fis.close();
     }
 }

@@ -21,18 +21,24 @@ public class GetChannel {
 
     public static void main(String[] args)  throws Exception{
 
+    	FileOutputStream fos = new FileOutputStream("rtest.txt");
+    	
         // 获取通道
-        FileChannel fc = new FileOutputStream("rtest.txt").getChannel();
+        FileChannel fc = fos.getChannel();
 
         fc.write(ByteBuffer.wrap("file output channle test".getBytes()));
         fc.close();
-
-        fc = new RandomAccessFile("rtest.txt", "rw").getChannel();
+        fos.close();
+        
+        RandomAccessFile ras = new RandomAccessFile("rtest.txt", "rw");
+        fc = ras.getChannel();
         fc.position(fc.size());// 定位文件当前位置
         fc.write(ByteBuffer.wrap("file random access file".getBytes()));
         fc.close();
+        ras.close();
 
-        fc = new FileInputStream("rtest.txt").getChannel();
+        FileInputStream fis = new FileInputStream("rtest.txt");
+        fc = fis.getChannel();
         ByteBuffer buff = ByteBuffer.allocate(SIZE);
         fc.read(buff);
         buff.flip();
@@ -40,7 +46,8 @@ public class GetChannel {
         while (buff.hasRemaining()) {
             System.out.println((char) buff.get());
         }
-
+        fc.close();
+        fis.close();
     }
 }
 

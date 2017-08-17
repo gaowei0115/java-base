@@ -22,8 +22,10 @@ public class ChannelCopy {
         System.out.println(new ChannelCopy().getClass().getResource("").getPath());
         String path = new ChannelCopy().getClass().getResource("").getPath() + "1.txt";
         String pathcopy = new ChannelCopy().getClass().getResource("").getPath() + "1copy.txt";
-        FileChannel in = new FileInputStream(path).getChannel();
-        FileChannel out = new FileOutputStream(pathcopy).getChannel();
+        FileInputStream fis = new FileInputStream(path);
+        FileChannel in = fis.getChannel();
+        FileOutputStream fos = new FileOutputStream(pathcopy);
+        FileChannel out = fos.getChannel();
 
         ByteBuffer buff = ByteBuffer.allocate(SIZE);
         while ((in.read(buff)) != -1) {
@@ -33,5 +35,7 @@ public class ChannelCopy {
         }
         out.close();
         in.close();
+        fis.close();
+        fos.close();
     }
 }
