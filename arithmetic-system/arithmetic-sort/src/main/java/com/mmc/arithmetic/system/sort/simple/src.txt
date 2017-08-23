@@ -1,0 +1,52 @@
+简单排序
+	冒泡排序
+		比较相邻位置元素，根据约定排序规则，交换相邻元素，每次循环冒出一位比较最终结果放到数组右边位置。
+		基本数据结构
+		arrays 表示数组对象
+		int length = arrays.length;
+		int out, in;
+		for (out = length; out > 0; out--) { // 外层循环控制n个元素要执行比较交换冒出操作
+			for (in = 0; in < out - 1; in++) { // 内层循环比较交换相邻两个元素
+				if (arrays[in] > arrays[in + 1]) {
+					temp = arrays[in];
+					arrays[in] = arrays[in + 1];
+					arrays[in + 1] = temp;
+				}
+			}
+		}
+		
+		时间：比较n * n / 2  交换 n * n / 2
+			如果排序数据量很大时，比较交换花费时间系数都是 f(n) = n * n级别。
+		
+	选择排序
+		内层循环比较找出满足排序规则元素，交换元素，每次交换结果保存在左边。
+		基本数据结构
+		arrays 表示数组对象
+		length 表示数组长度
+		int out, in ; 下标位置
+		for (out = 0; out < length - 1; out++) {
+			temp = arrays[out];// 保存最终满足排序规则的元素
+			for (in = out + 1; in < length; in++) {
+				if (temp > arrays[in]) {
+					temp = arrays[in];
+				}
+			}
+			// 交换比较结果
+			swap(arrays, out, in);
+		}
+		时间：比较 n * n / 2 交换 n
+	插入排序
+		保证部分数据有序的，循环其它数据比较将结果插入到已经排序的部分数据中
+		基本数据结构
+		arrays 表述数组对象
+		length 表示数组长度
+		int out, in; 下标位置
+		for (out = 1; out < length; out++) {
+			temp = arrays[out];
+			in = out;
+			while (in >= 0 && arrays[in - 1] <= temp) {
+				arrays[in - 1] = arrays[in];
+				in--;
+			}
+			a[in] = temp;
+		}
