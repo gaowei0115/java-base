@@ -2,41 +2,42 @@
 package com.mmc.arithmetic.system.sort.high.has;
 
 /** 
- * className: HashInsertSort<br/>
- * Description: 在谈插入排序<br/>
+ * className: HashSort<br/>
+ * Description: 哈希排序算法<br/>
  * Author: GW<br/>
- * CreateTime： 2017年8月28日<br/>
+ * CreateTime： 2017年8月29日<br/>
  *
  * History: (version) Author DateTime Note <br/>
  */
-public class HashInsertSort {
+public class HashSort {
 
-	
 	/**
-	 * Description：<br/>
+	 * Description：哈希算法实现原理<br/>
 	 * Author：GW<br/>
 	 * History: (version) Author DateTime Note <br/>
 	 * @param datas
 	 */
 	public static void sort(Double[] datas) {
-		// 下标
 		int in, out;
+		int h = 1;
+		// 计算hash值
 		int length = datas.length;
-		for (in = 1; in < length; in++) {
-			Double temp = datas[in];
-			out = in;
-			while (out > 0 && temp <= datas[out - 1]) {
-				datas[out] = datas[out - 1];
-				out--;
-			}
-			datas[out] = temp;
+		while (h <= length / 3) {
+			h = h * 3 + 1;
 		}
-	}
-	
-	public static void swap(Double[] datas, int index, int position) {
-		Double temp = datas[index];
-		datas[index] = datas[position];
-		datas[position] = temp;
+		
+		while (h > 0) {
+			for (out = h; out < length; out++) {
+				Double temp = datas[out];
+				in = out;
+				while (in > h - 1 && datas[in - h] >= temp) {
+					datas[in] = datas[in - h];
+					in = in - h;
+				}
+				datas[in] = temp;
+			}
+			h = (h - 1) / 3;
+		}
 	}
 	
 	public static void main(String[] args) {
