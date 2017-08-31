@@ -14,6 +14,33 @@ import org.junit.Test;
  */
 public class BoundedBufferTest extends TestCase {
 
+	
+	@Test
+	public void testTakesBlocksWhenEmpty() throws InterruptedException {
+		final BoundedBuffer<Integer> bb = new BoundedBuffer<Integer>(10);
+		Thread task = new Thread() {
+			/* (non-Javadoc)
+			 * @see java.lang.Thread#run()
+			 */
+			@Override
+			public void run() {
+				try {
+					System.out.println(bb);
+					bb.take();
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		
+		task.start();
+		
+		task.interrupt();
+		task.join(1000);
+		Assert.assertFalse(task.isAlive());
+	}
+	
 	/**
 	 * Description：创建有界缓存区时测试为空情况<br/>
 	 * Author：GW<br/>
