@@ -27,5 +27,6 @@
     <module>arithmetic-collection</module>
     <module>arithmetic-arithbase</module>
     <module>arithmetic-hash</module>
+    <module>arithmetic-tree</module>
   </modules>
 </project>
