@@ -34,4 +34,10 @@ public class LoggerProxyTest {
 		saleManager.addSale();
 		saleManager.delSale();
 	}
+	
+	@Test
+	public void test01() {
+		System.out.println(8 >>> 2);
+		System.out.println(2 << 2);
+	}
 }
