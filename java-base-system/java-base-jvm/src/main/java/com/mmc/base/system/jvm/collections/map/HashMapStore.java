@@ -26,5 +26,8 @@ public class HashMapStore {
 		for (String key : map.keySet()) {
 			System.out.println(key + " : " + map.get(key));
 		}
+		System.out.println(("key3".hashCode() >>> 16));
+		System.out.println(("key3".hashCode() >>> 16) & (16-1));
+		System.out.println(8 >>> 3);
 	}
 }
