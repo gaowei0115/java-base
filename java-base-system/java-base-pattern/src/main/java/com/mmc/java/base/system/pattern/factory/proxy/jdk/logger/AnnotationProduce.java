@@ -52,6 +52,8 @@ public class AnnotationProduce {
 						for (Method m : ms) {
 							String name = m.getName();
 							if (m.isAnnotationPresent(PointC.class)) {
+//								PointC pointC = m.getAnnotation(PointC.class);
+//								String value = pointC.value();
 								methods.add(name);
 							}
 						}
