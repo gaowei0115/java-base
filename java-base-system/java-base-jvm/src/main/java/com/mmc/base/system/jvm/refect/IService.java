@@ -11,5 +11,5 @@ package com.mmc.base.system.jvm.refect;
  */
 public interface IService {
 
-	void login(String name, String password);
+	void login(String name, String password) throws MockException;
 }

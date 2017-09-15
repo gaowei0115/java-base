@@ -27,10 +27,13 @@ public class LoginHandler implements InvocationHandler {
 	 */
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		try {
-			return method.invoke(target, args);
+			System.out.println("proxy ... start");
+			Object result = method.invoke(target, args);
+			System.out.println("proxy ... end");
+			return result;
 		} catch (Throwable e) {
 			// 异常处理
-			System.out.println(autoName);
+			System.out.println(autoName + " exception>>> " + e.getMessage());
 		}
 		return null;
 	}
