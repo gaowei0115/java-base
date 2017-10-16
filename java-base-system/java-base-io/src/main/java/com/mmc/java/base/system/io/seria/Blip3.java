@@ -71,7 +71,6 @@ public class Blip3 implements Externalizable {
 	/* (non-Javadoc)
 	 * @see java.io.Externalizable#writeExternal(java.io.ObjectOutput)
 	 */
-	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
 		out.writeObject(s);
 		out.writeInt(i);
@@ -80,7 +79,6 @@ public class Blip3 implements Externalizable {
 	/* (non-Javadoc)
 	 * @see java.io.Externalizable#readExternal(java.io.ObjectInput)
 	 */
-	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 		this.s = (String) in.readObject();
 		this.i = in.readInt();
